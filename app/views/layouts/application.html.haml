@@ -1,0 +1,63 @@
+
+%html
+%head
+	%title Car Share
+	= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+	= javascript_include_tag 'application', 'data-turbolinks-track' => true
+	= csrf_meta_tags
+	
+
+%body
+	-flash.each do |name, msg|
+		=content_tag :div, msg, class: "alert alert-info"		
+
+	%nav.navbar.navbar-default.custom
+		
+		-if user_signed_in?
+			
+			.container-fluid
+				.navbar-header
+					.navbar-brand 
+						=link_to " Car Share ", root_path
+				%ul.nav.navbar-nav
+					%li.active
+						=link_to "Home", root_path
+					%li	
+						=link_to "Ask for a Lift", new_request_path
+					%li 
+						=link_to "Offer a Lift", new_offer_path
+					%li 
+						=link_to "View all Offers", offers_path
+					%li 
+						=link_to "View all Requests", requests_path
+					%li 
+						=link_to "My Account", user_path(current_user.id)
+					%li
+						= link_to "Sign Out", destroy_user_session_path, method: :delete
+
+
+		-elsif admin_signed_in?
+			.container-fluid
+				.navbar-header
+					.navbar-brand 
+						=link_to " Car Share ", admins_dashboard_index_path
+				%ul.nav.navbar-nav
+					%li.active
+						=link_to "Home", admins_dashboard_index_path
+					%li	
+						=link_to "Requests", admins_requests_path
+					%li 
+						=link_to "Offers", admins_offers_path
+					%li 
+						=link_to "Users", admins_users_path
+					%li
+						= link_to "Sign Out", destroy_admin_session_path, method: :delete
+
+			
+		-else	
+			=link_to "Sign Up", new_user_registration_path
+			=link_to "Sign In", new_user_session_path
+
+	=yield
+
+

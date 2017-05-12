@@ -1,0 +1,67 @@
+-if admin_signed_in?
+
+	%h1 Admin Dashboard
+	
+	.col-md-4
+		.box.panel.panel-default 
+			%h1 All time
+			%ul
+				%li
+					Total users:
+					=@totalUsers = User.count
+				%li
+					Total Requests:
+					=@totalRequests = Request.count
+				%li
+					Total Offers: 
+					=@totalOffers = Offer.count  
+				%li
+					Total Lifts:
+					=@totalLifts
+	.col-md-4	
+		.box.panel.panel-default 
+			%h1 Last 24 hours
+			%ul
+				%li
+					New users:
+					=@last_1_days = User.last_x_days(1).count
+				%li
+					New Requests:
+					=@last_1_days = Request.last_x_days(1).count
+				%li
+					New Offers: 
+					=@last_1_days = Offer.last_x_days(1).count
+				%li
+					New Lifts:
+					=@todaysLifts
+	.col-md-4	
+		.box.panel.panel-default 
+			%h1 Last 28 days (4 weeks)
+			%ul
+				%li
+					New users:
+					=@last_28_days = User.last_x_days(28).count
+				%li
+					New Requests:
+					=@last_28_days = Request.last_x_days(28).count
+				%li
+					New Offers: 
+					=@last_28_days = Offer.last_x_days(28).count
+				%li
+					New Lifts:
+					=@monthLifts
+	
+	= content_tag :div, "", id: "requests_chart", data: {requests: requests_chart_data }
+
+	:javascript
+	 
+		new Morris.Line({
+			element: 'requests_chart',
+			data: $('#requests_chart').data('requests'),
+			xkey: 'created_at',
+			xLabels: "week",
+			ykeys: ['amount'],
+			labels: ['Requests Made']
+		});
+-else
+	%h1 You shall not pass

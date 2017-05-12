@@ -1,0 +1,18 @@
+%h2 Current requests:
+
+-if @user.requests.present?
+	- @user.requests.where(:accepted => 'f').each do |request|	
+		.box.panel.panel-default 
+			= link_to request.departure, request
+			to
+			= link_to request.destination, request
+			%br/
+			=request.time.strftime("%dth %B,  %H:%M")
+			%br/
+			Posted by:
+			=link_to (request.user.fname), user_path(request.user_id) 
+			=link_to (request.user.lname), user_path(request.user_id)
+
+
+-else
+	you have not made any requests yet

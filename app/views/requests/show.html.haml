@@ -1,0 +1,43 @@
+/ If someone has already offered a lift, do not show the 'offer life' button
+
+-if @request.driverid.blank? && user_signed_in?	&& current_user != @request.user 
+	=render 'offer'
+%br/
+=@request.departure 
+to
+=@request.destination
+%br/
+=@request.time.strftime("%dth %B,  %H:%M")
+%br/
+=@request.desc
+%br/
+Submitted by 
+=link_to "#{@request.user.fname} #{@request.user.lname}", user_path(@request.user_id)
+%br/
+- if @request.driverid
+	Accepted by 
+	=link_to (@request.driverid), user_path(@request.driverid)
+%br/
+.avatar
+	=image_tag @request.user.avatar.url.to_s
+%br/	
+=@request.user.gender
+%br/
+
+=render 'route'
+
+
+
+%br/
+
+
+=link_to "Home", root_path 
+=if current_user.id == @request.user_id
+	=link_to "Edit", edit_request_path
+	=link_to "Delete", request_path, method: :delete, data:{confirm: "Are you sure?"}
+
+
+
+
+
+

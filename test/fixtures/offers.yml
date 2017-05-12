@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  departure: 
+  destination: 
+  time: 
+  seats: 
+
+two:
+  departure: 
+  destination: 
+  time: 
+  seats: 

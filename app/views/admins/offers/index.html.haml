@@ -1,0 +1,45 @@
+-if admin_signed_in?
+
+	%h1 Offers
+	.row-fluid
+		.block-body
+			%BR
+			%table.table.table-striped{width: '100%'}
+				%thead
+					%tr.medium
+						%th Offer ID
+						%th User ID
+						%th Created At
+						%th Departure
+						%th Destination
+						%th Time
+						%th Accepted
+				%tbody
+
+					= search_form_for @search, url: admins_offers_path do |f|
+						%td= f.text_field :id_eq, class: "form-control input-sm", size: 4
+						%td= f.text_field :user_id_eq, class: "form-control input-sm", size: 4
+						%td
+						%td= f.text_field :departure_cont, class: "form-control input-sm", size: 4
+						%td= f.text_field :destination_cont, class: "form-control input-sm", size: 4
+						%td
+						%td= f.text_field :accepted_eq, class: "form-control input-sm", size: 4
+
+						%td.actions
+							%button.btn.btn-default{:type => "submit"}
+								%i.glyphicon.glyphicon-search
+							.btn.btn-default= link_to content_tag(:i, "", class: "glyphicon glyphicon-remove"),admins_offers_path , class:"cancel-button"
+
+					-@offers.each do |offer|
+						%tr.medium
+							%td= link_to offer.id, admins_offer_path(offer.id)
+							%td= offer.user_id	
+							%td= offer.created_at
+							%td= offer.departure 
+							%td= offer.destination    
+							%td= offer.time 
+							%td= offer.accepted 
+	   					
+	=paginate @offers
+-else
+	%h1 You shall not pass

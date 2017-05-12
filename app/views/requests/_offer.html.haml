@@ -1,0 +1,6 @@
+= link_to "Offer this persion a lift", 
+          request_path(@request, 
+                    :request => { :driverid => current_user.id, :accepted => 't'}),
+          :method => :put, 
+          :confirm => "Are you sure?"
+          

@@ -1,0 +1,53 @@
+%h2 Lifts Shared as a Driver: 
+
+
+-if @other_requests.present? && @offers.present?
+
+	/passenger asks for a lift. User accepts
+	/ display departute, destination, time, passenger name, where driverID = @user.id from requests table.
+
+	%br/
+	Passenger asks for a lift. User accepts
+	%br/
+
+	- @other_requests.each do |request|	
+		.box.panel.panel-default 
+			= link_to request.departure, request
+			to
+			= link_to request.destination, request
+			%br/
+			=request.time.strftime("%dth %B,  %H:%M")
+			%br/
+			Posted by:
+			=link_to (request.user.fname), user_path(request.user_id) 
+			=link_to (request.user.lname), user_path(request.user_id)
+			%br/
+			
+
+			driver id:
+			=request.driverid
+
+	/ User offers lift. passenger accepts.
+	/- @user.offers.where(:accepted => 't').each do |offer|where(:driverid => @user.id)
+	/where(:driverid => @requetuser.id)
+
+	%br/
+	User offers a lift. Passenger accepts
+	%br/
+
+	- @offers.where(:accepted => 't').each do |offer|	
+		.box.panel.panel-default 
+			= link_to offer.departure, offer
+			to
+			= link_to offer.destination, offer
+			%br/
+			=offer.time.strftime("%dth %B,  %H:%M")
+			%br/
+			Posted by:
+			=link_to (offer.user.fname), user_path(offer.user_id) 
+			=link_to (offer.user.lname), user_path(offer.user_id)
+			%br/
+			Accepted by 
+			=link_to (offer.passengerid), user_path(offer.passengerid)
+-else
+	you have not given anyone a lift yet

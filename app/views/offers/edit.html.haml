@@ -1,0 +1,10 @@
+- if current_user.id == @offer.user_id
+
+	%h1 Edit Form
+
+	=render 'form'
+
+	=link_to "Cancel", offer_path
+- else
+	%h1 You shall not pass
+

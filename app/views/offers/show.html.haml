@@ -1,0 +1,36 @@
+
+/ If someone has already accepted the lift, do not show the 'accept lift' button
+
+-if @offer.passengerid.blank? && user_signed_in? && current_user != @offer.user 
+	=render 'accept'
+
+%br/
+=@offer.departure 
+to
+=@offer.destination
+%br/
+=@offer.time.strftime("%dth %B,  %H:%M")
+%br/
+Number of seats available:
+=@offer.seats
+%br/
+=@offer.desc
+%br/
+submitted by 
+=link_to "#{@offer.user.fname} #{@offer.user.lname}", user_path(@offer.user_id)
+%br/
+.avatar
+	=image_tag @offer.user.avatar.url.to_s
+%br/
+=@offer.user.gender
+%br/
+
+=render 'map'
+
+%br/
+=if current_user.id == @offer.user_id
+	=link_to "Edit", edit_request_path
+	=link_to "Delete", request_path, method: :delete, data:{confirm: "Are you sure?"}
+
+
+

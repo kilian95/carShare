@@ -1,0 +1,42 @@
+%h1 Requests
+
+.row-fluid
+	.block-body
+		%BR
+		%table.table.table-hover{width: '100%'}
+			%thead
+				%tr.medium
+					%th Request ID
+					%th User ID
+					%th Created At
+					%th Departure
+					%th Destination
+					%th Time
+					%th Accepted
+			%tbody
+				= search_form_for @search, url: admins_requests_path do |f|
+					%td= f.text_field :id_eq, class: "form-control input-sm", size: 4
+					%td= f.text_field :user_id_eq, class: "form-control input-sm", size: 4
+					%td
+					%td= f.text_field :departure_cont, class: "form-control input-sm", size: 4
+					%td= f.text_field :destination_cont, class: "form-control input-sm", size: 4
+					%td
+					%td= f.text_field :accepted_eq, class: "form-control input-sm", size: 4
+
+
+					%td.actions
+						%button.btn.btn-default{:type => "submit"}
+							%i.glyphicon.glyphicon-search
+						.btn.btn-default= link_to content_tag(:i, "", class: "glyphicon glyphicon-remove"),admins_requests_path , class:"cancel-button"
+
+
+				-@requests.each do |request|
+					%tr.medium
+						%td= link_to request.id, admins_request_path(request.id)
+						%td= request.user_id	
+						%td= request.created_at
+						%td= request.departure 
+						%td= request.destination    
+						%td= request.time 
+						%td= request.accepted 
+=paginate @requests

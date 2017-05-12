@@ -1,0 +1,19 @@
+.avatar
+	=image_tag @user.avatar.url.to_s
+%br/
+=@user.fname
+=@user.lname
+%br/
+=@user.gender
+%br/
+
+=render 'offers'
+
+=render 'requests'
+
+=render 'liftsSharedAsDriver'
+
+=render 'liftsSharedAsPassenger'
+
+
+	

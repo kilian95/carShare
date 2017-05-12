@@ -1,0 +1,7 @@
+/ When user accepts offer change accepted to true...
+= link_to "Accept this lift", 
+          offer_path(@offer, 
+                    :offer => { :passengerid => current_user.id, :accepted => 't'}),
+          :method => :put, 
+          :confirm => "Are you sure?"
+          

@@ -1,0 +1,21 @@
+%h4 Most recent lift offers:
+
+
+-@offers.each do |offer|
+
+	.box.panel.panel-default 
+		= link_to offer.departure, offer
+		to
+		= link_to offer.destination, offer
+		%br/
+		=offer.time.strftime("%dth %B,  %H:%M")
+		%br/
+		Number of seats available:
+		=offer.seats
+		%br/
+		Posted by:
+		=link_to "#{offer.user.fname} #{offer.user.lname}", user_path(offer.user_id)
+		%br/
+		.avatar
+			=image_tag offer.user.avatar.url.to_s
+			

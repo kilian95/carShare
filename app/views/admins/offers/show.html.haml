@@ -1,0 +1,35 @@
+-if admin_signed_in?
+
+	%h2 Offer 
+
+	.row
+		
+		%dl.dl-horizontal
+			%dt= t 'Offer ID', :default => "Offer ID:" 
+			%dd= @offer.id
+		%dl.dl-horizontal
+			%dt= t 'User ID', :default => "User ID:" 
+			%dd= @offer.user_id		
+		%dl.dl-horizontal
+			%dt= t 'Created At', :default => "Created At:" 
+			%dd= @offer.created_at
+		%dl.dl-horizontal
+			%dt= t 'Departure', :default => "Departure:" 
+			%dd= @offer.departure
+		%dl.dl-horizontal
+			%dt= t 'Destination', :default => "Destination:" 
+			%dd= @offer.destination
+		%dl.dl-horizontal
+			%dt= t 'Estimated Time of Departure', :default => "ETD:" 
+			%dd= @offer.time
+		%dl.dl-horizontal
+			%dt= t 'Accepted', :default => "Accepted:" 
+			%dd= @offer.accepted
+		%dl.dl-horizontal
+			%dt= t 'Seats', :default => "Seats:" 
+			%dd= @offer.seats
+		%dl.dl-horizontal
+			%dt= t 'Description', :default => "Description:" 
+			%dd= @offer.desc				
+	%br/
+	=link_to "Delete", offer_path, method: :delete, data:{confirm: "Are you sure?"}

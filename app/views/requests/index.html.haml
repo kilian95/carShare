@@ -1,0 +1,18 @@
+/check if user is admin
+
+
+%h4 Most recent lift requests:
+
+-@requests.each do |request|
+
+	.box.panel.panel-default 
+		= link_to request.departure, request
+		to
+		= link_to request.destination, request
+		%br/
+		=request.time.strftime("%dth %B,  %H:%M")
+		%br/
+		Posted by:
+		=link_to "#{request.user.fname} #{request.user.lname}", user_path(request.user_id)
+		.avatar
+			=image_tag request.user.avatar.url.to_s
