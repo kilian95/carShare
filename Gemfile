@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
-
+gem 'pg'
 gem 'rails', '~> 5.0.2'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
@@ -35,6 +35,8 @@ gem 'raphael-rails', '~> 2.1', '>= 2.1.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
