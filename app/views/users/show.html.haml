@@ -1,11 +1,11 @@
-.avatar
-	=image_tag @user.avatar.url.to_s
-%br/
-=@user.fname
-=@user.lname
-%br/
-=@user.gender
-%br/
+.container
+	.userInfo
+		.avatarProfile
+			=image_tag @user.avatar.url.to_s
+		%br/
+		%h1=@user.fname
+		%h1=@user.lname
+		
 
 =render 'offers'
 

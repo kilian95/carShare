@@ -42,7 +42,7 @@ class RequestsController < ApplicationController
 	end
 
 	def show
-
+		gon.request = @request
 	end
 
 	def update

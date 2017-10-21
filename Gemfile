@@ -28,6 +28,7 @@ gem 'cancan', '~> 1.6', '>= 1.6.10'               #authorization outdated/not us
 gem 'cancancan', '~> 1.16'
 gem 'morrisjs-rails', '~> 0.5.1.2' 
 gem 'raphael-rails', '~> 2.1', '>= 2.1.2' 
+gem 'gon', '~> 6.2'
 
 
 

@@ -1,6 +1,6 @@
 %script{:src => "https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDqnbDDZdGNHuoFZk6LM3Jwq2JE8iVv7OA&libraries=places"}
 
-#map-canvas
+#map-canvas 
 
 :javascript
   
@@ -36,7 +36,7 @@
   var test2;
   function geocodeAddress(geocoder, resultsMap, directionsService, directionsDisplay) {
 
-    var depart = gon.request.departure
+    var depart = gon.offer.departure
     geocoder.geocode({'address': depart}, function(results, status) { 
       if (status === 'OK') {
         test1 = results[0].geometry.location
@@ -52,7 +52,7 @@
 
     });
 
-    var dest = gon.request.destination
+    var dest = gon.offer.destination
     geocoder.geocode({'address': dest}, function(results, status) {
       if (status === 'OK') {
         test2 = results[0].geometry.location

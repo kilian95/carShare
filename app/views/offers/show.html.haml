@@ -3,34 +3,41 @@
 
 -if @offer.passengerid.blank? && user_signed_in? && current_user != @offer.user 
 	=render 'accept'
+=render 'route'
 
-%br/
-=@offer.departure 
-to
-=@offer.destination
-%br/
-=@offer.time.strftime("%dth %B,  %H:%M")
-%br/
-Number of seats available:
-=@offer.seats
-%br/
-=@offer.desc
-%br/
-submitted by 
-=link_to "#{@offer.user.fname} #{@offer.user.lname}", user_path(@offer.user_id)
-%br/
-.avatar
-	=image_tag @offer.user.avatar.url.to_s
-%br/
-=@offer.user.gender
-%br/
+.container
 
-=render 'map'
-
+	%h3#depart=@offer.departure 
+	to
+	%h3#arrive=@offer.destination
+	=@offer.time.strftime("%dth %B,  %H:%M")
+	%br/
+	Number of seats available:
+	=@offer.seats
+	%br/
+	=@offer.desc
+	%br/
+	submitted by 
+	=link_to "#{@offer.user.fname} #{@offer.user.lname}", user_path(@offer.user_id)
+	%br/
+	.avatar
+		=image_tag @offer.user.avatar.url.to_s
+	
 %br/
 =if current_user.id == @offer.user_id
 	=link_to "Edit", edit_request_path
 	=link_to "Delete", request_path, method: :delete, data:{confirm: "Are you sure?"}
+
+:javascript
+	$( document ).ready(function() {
+		var daddress = ($( "h3#depart" ).html());
+		var res = daddress.split(",");
+		$("#depart").html(res[0] + ", " + res[1]);
+
+		var aaddress = ($( "h3#arrive" ).html());
+		var res = aaddress.split(",");
+		$("#arrive").html(res[0] + ", " + res[1]);
+	});	
 
 
 

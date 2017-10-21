@@ -36,7 +36,7 @@ class OffersController < ApplicationController
 	end
 
 	def show
-
+		gon.offer = @offer
 	end
 
 	def update

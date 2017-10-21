@@ -21,11 +21,13 @@
 
   <div class="form-group">
     <div class="box panel panel-default new">
-      <%= f.input :departure, input_html: {class: 'form-control', id: "departure"} %>
-      <h4>to</h4>
-      <%= f.input :destination, input_html: { class: 'form-control', id: "destination" } %>
+      <div id="hide">
+        <%= f.input :departure, input_html: {class: 'form-control', id: "departure"} %>
+        <h4>to</h4>
+        <%= f.input :destination, input_html: { class: 'form-control', id: "destination" } %>
+        <%= f.input :desc %>
+      </div>  
       <%= f.input :time %>
-      <%= f.input :desc %>
     </div>
     <%= f.button :submit, class: "btn btn-primary" %>
   </div>
