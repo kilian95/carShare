@@ -29,6 +29,9 @@ gem 'cancancan', '~> 1.16'
 gem 'morrisjs-rails', '~> 0.5.1.2' 
 gem 'raphael-rails', '~> 2.1', '>= 2.1.2' 
 gem 'gon', '~> 6.2'
+gem "fog-aws"
+gem "figaro"
+gem 'carrierwave_direct'
 
 
 
