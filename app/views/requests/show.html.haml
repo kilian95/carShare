@@ -1,4 +1,3 @@
-/ If someone has already offered a lift, do not show the 'offer lift' button
 
 -if @request.driverid.blank? && user_signed_in?	&& current_user != @request.user 
 	=render 'offer'

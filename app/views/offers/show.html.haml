@@ -1,6 +1,4 @@
 
-/ If someone has already accepted the lift, do not show the 'accept lift' button
-
 -if @offer.passengerid.blank? && user_signed_in? && current_user != @offer.user 
 	=render 'accept'
 =render 'route'
