@@ -6,17 +6,16 @@
 	/passenger asks for a lift. User accepts
 	/ display departute, destination, time, passenger name, where driverID = @user.id from requests table.
 
-	%br/
-	Passenger asks for a lift. User accepts
-	%br/
-
 	- @other_requests.each do |request|	
 		.box.panel.panel-default 
-			= link_to request.departure, request
+			%h4= link_to request.departure, request
 			to
-			= link_to request.destination, request
+			%h4= link_to request.destination, request
 			%br/
-			=request.time.strftime("%dth %B,  %H:%M")
+			You gave
+			=request.user.fname
+			a lift on the:
+			=request.time.strftime("%dth %B, at  %H:%M")
 			%br/
 			Posted by:
 			=link_to (request.user.fname), user_path(request.user_id) 
@@ -31,9 +30,6 @@
 	/- @user.offers.where(:accepted => 't').each do |offer|where(:driverid => @user.id)
 	/where(:driverid => @requetuser.id)
 
-	%br/
-	User offers a lift. Passenger accepts
-	%br/
 
 	- @offers.where(:accepted => 't').each do |offer|	
 		.box.panel.panel-default 

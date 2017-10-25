@@ -1,6 +1,12 @@
 
 -if @request.driverid.blank? && user_signed_in?	&& current_user != @request.user 
 	=render 'offer'
+-elsif current_user == @request.driverid
+	=render 'acceptedByUser'
+-elsif @request.driverid.blank? && current_user == @request.user  	
+
+-else	
+	=render 'accepted'	
 %br/
 
 =render 'route' 

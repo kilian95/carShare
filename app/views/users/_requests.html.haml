@@ -2,10 +2,10 @@
 
 -if @user.requests.present?
 	- @user.requests.where(:accepted => 'f').each do |request|	
-		.box.panel.panel-default 
-			= link_to request.departure, request
+		.box.panel.panel-default#liftsOffers 
+			%h4= link_to request.departure, request
 			to
-			= link_to request.destination, request
+			%h4= link_to request.destination, request
 			%br/
 			=request.time.strftime("%dth %B,  %H:%M")
 			%br/

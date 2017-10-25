@@ -4,17 +4,9 @@
 
 :javascript
   
-  var service;
-  var centerlatlng
-  
-  function initMap() {
-
-    pointA = new google.maps.LatLng(51.7519, -1.2578)
-    pointB = new google.maps.LatLng(50.8429, -0.1313)
-        
+  function initMap() {   
     mapOptions = {
         zoom: 7,
-        center: pointA
     }
     var geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions)

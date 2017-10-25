@@ -1,37 +1,19 @@
 %h2 Lifts Shared as a Passenger:
 
 
--if @requests.present? && @other_offers.present?
-
-
-	/user asks for a lift. driver accepts
-	/ display departute, detination, time, driver name, where @use.request.accepted = true and driver name is got from driverid = userID from requests
-	%br/ 
-	User asks for a lift. Driver acceptes
-	%br/
-
-	- @user.requests.where(:accepted => 't').each do |request|	
+-if @requests.present? && @other_requests.present?
+	- @user.requests.each do |request|	
 		.box.panel.panel-default 
-			= link_to request.departure, request
+			%h4= link_to request.departure, request
 			to
-			= link_to request.destination, request
-			%br/
-			=request.time.strftime("%dth %B,  %H:%M")
-			%br/
-			Posted by:
-			=link_to (request.user.fname), user_path(request.user_id) 
-			=link_to (request.user.lname), user_path(request.user_id)
-			%br/
-			Accepted by 
+			%h4= link_to request.destination, request
+			Posted by you
+			%br/ 
 			=link_to (request.driverid), user_path(request.driverid)
-
+			gave you a lift on 
+			=request.time.strftime("%dth %B, at  %H:%M")
 
 	/driver offers a lift. User accepts.  where passengerID = @user.id from offers table.
-
-	%br/
-	Driver offers a lift. User accepts
-	%br/
-
 	- @other_offers.each do |offer|	
 		.box.panel.panel-default 
 			= link_to offer.departure, offer

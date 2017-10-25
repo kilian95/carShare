@@ -4,14 +4,14 @@
 -@offers.each do |offer|
 	.container
 		.box.panel.panel-default 
-			= link_to offer.departure, offer
+			%h3= link_to offer.departure, offer
 			to
-			= link_to offer.destination, offer
-			%br/
+			%h3= link_to offer.destination, offer
 			=offer.time.strftime("%dth %B,  %H:%M")
 			%br/
 			Number of seats available:
-			=offer.seats
+			%strong
+				=offer.seats
 			%br/
 			Posted by:
 			=link_to "#{offer.user.fname} #{offer.user.lname}", user_path(offer.user_id)

@@ -2,21 +2,22 @@
 
 -if @user.offers.present?
 	- @user.offers.where(:accepted => 'f').each do |offer|
-		.box.panel.panel-default 
-			= link_to offer.departure, offer
+		.box.panel.panel-default#liftsOffers
+			%h4= link_to offer.departure, offer
 			to
-			= link_to offer.destination, offer
+			%h4= link_to offer.destination, offer
 			%br/
 			=offer.time.strftime("%dth %B,  %H:%M")
 			%br/
 			Number of seats available:
 			=offer.seats
 			%br/
-			Posted by:
-			=link_to (offer.user.fname), user_path(offer.user_id) 
-			=link_to (offer.user.lname), user_path(offer.user_id)
+			Posted by you
 -else
 	you have not made any offers yet
 
-
+:javascript
+	$('#liftsOffers').click(function() {
+		alert("hello"); 
+	});
 
